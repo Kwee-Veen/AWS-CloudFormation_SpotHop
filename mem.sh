@@ -5,7 +5,7 @@ INSTANCE_ID=$(curl -s -H "X-aws-ec2-metadata-token: $TOKEN" http://169.254.169.2
 
 USEDMEMORY=$(free -m | awk 'NR==2{printf "%.2f\t", $3*100/$2 }')
 TCP_CONN=$(netstat -an | wc -l)
-TCP_CONN_PORT_80=$(netstat -an | grep 80 | wc -l)
+TCP_CONN_PORT_3000=$(netstat -an | grep 3000 | wc -l)
 IO_WAIT=$(iostat | awk 'NR==4 {print $5}')
 
 aws cloudwatch put-metric-data --metric-name memory-usage --dimensions Instance=$INSTANCE_ID --namespace "Custom" --value $USEDMEMORY
