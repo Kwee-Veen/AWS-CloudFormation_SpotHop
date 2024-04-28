@@ -12,11 +12,10 @@ IO_WAIT=$(iostat | awk 'NR==4 {print $5}')
 aws cloudwatch put-metric-data --metric-name memory-usage --dimensions Instance=$INSTANCE_ID --namespace "Custom" --value $USEDMEMORY
 aws cloudwatch put-metric-data --metric-name Tcp_connections --dimensions Instance=$INSTANCE_ID --namespace "Custom" --value $TCP_CONN
 aws cloudwatch put-metric-data --metric-name TCP_connection_on_port_3000 --dimensions Instance=$INSTANCE_ID --namespace "Custom" --value $TCP_CONN_PORT_3000
-aws cloudwatch put-metric-data --metric-name TCP_connection_on_port_443 --dimensions Instance=$INSTANCE_ID --namespace "Custom" --value $TCP_CONN_PORT_443
 aws cloudwatch put-metric-data --metric-name IO_WAIT --dimensions Instance=$INSTANCE_ID --namespace "Custom" --value $IO_WAIT
 
-HTTP_OR_HTTPS_CONN=($TCP_CONN_PORT_3000 + $TCP_CONN_PORT_443)
-aws cloudwatch put-metric-data --metric-name HTTP_or_HTTPS_Connections --dimensions Instance=$INSTANCE_ID --namespace "Custom" --value $HTTP_OR_HTTPS_CONN
+aws cloudwatch put-metric-data --metric-name TCP_connection_on_port_443 --dimensions Instance=$INSTANCE_ID --namespace "Custom" --value $TCP_CONN_PORT_443
+aws cloudwatch put-metric-data --metric-name HTTP_and_HTTPS_Connections --dimensions Instance=$INSTANCE_ID --namespace "Custom" --value $(($TCP_CONN_PORT_3000 + $TCP_CONN_PORT_443))
 
 high_load=0
 if [[ $IO_WAIT > 70 || $USEDMEMORY > 80 ]]
