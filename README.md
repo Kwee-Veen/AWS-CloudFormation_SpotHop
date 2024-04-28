@@ -1,1 +1,1 @@
-<h4>AWS CloudWatch monitoring script for SETU's HDip in Computer Science: DevOps module, assignment 2</h4>
+<h4>AWS CloudFormation SpotHop VPC template & CloudWatch monitoring scripts for the DevOps assignment 2 </h4>
