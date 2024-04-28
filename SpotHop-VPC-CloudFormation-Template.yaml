@@ -1,0 +1,598 @@
+---
+Metadata:
+  TemplateId: "arn:aws:cloudformation:us-east-1:364566316223:generatedTemplate/4d5f617f-3184-477b-8234-91ebfcd73af4"
+Resources:
+  CloudFrontCachePolicy002e54312d136d493c8eb9b001f22f67d200RQ3z9:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::CloudFront::CachePolicy"
+    DeletionPolicy: "Retain"
+    Properties:
+      CachePolicyConfig:
+        Comment: "Policy for Amplify Origin"
+        MinTTL: 2
+        MaxTTL: 600
+        ParametersInCacheKeyAndForwardedToOrigin:
+          QueryStringsConfig:
+            QueryStringBehavior: "all"
+          EnableAcceptEncodingBrotli: true
+          HeadersConfig:
+            HeaderBehavior: "whitelist"
+            Headers:
+            - "Authorization"
+            - "CloudFront-Viewer-Country"
+            - "Host"
+          CookiesConfig:
+            CookieBehavior: "all"
+          EnableAcceptEncodingGzip: true
+        DefaultTTL: 2
+        Name: "Managed-Amplify"
+  CloudFrontOriginRequestPolicy0088a5eaf42fd44709b370b4c650ea3fcf00thWt4:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::CloudFront::OriginRequestPolicy"
+    DeletionPolicy: "Retain"
+    Properties:
+      OriginRequestPolicyConfig:
+        QueryStringsConfig:
+          QueryStringBehavior: "none"
+        Comment: "Policy for S3 origin with CORS"
+        HeadersConfig:
+          HeaderBehavior: "whitelist"
+          Headers:
+          - "origin"
+          - "access-control-request-headers"
+          - "access-control-request-method"
+        CookiesConfig:
+          CookieBehavior: "none"
+        Name: "Managed-CORS-S3Origin"
+  AutoScalingScalingPolicy00scalingPolicy12a2643577f548609ad1ccbaf409d0ecautoScalingGroupNameSpotHopasgpolicyNameSpotHopscalingpolicy00Z23cm:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::AutoScaling::ScalingPolicy"
+    DeletionPolicy: "Retain"
+    Properties:
+      PolicyType: "SimpleScaling"
+      ScalingAdjustment: 1
+      Cooldown: "210"
+      AutoScalingGroupName: "SpotHop-asg"
+      AdjustmentType: "ChangeInCapacity"
+  CloudFrontCachePolicy000862726205a94f769dedb50ca2e3a84f00zXBF2:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::CloudFront::CachePolicy"
+    DeletionPolicy: "Retain"
+    Properties:
+      CachePolicyConfig:
+        Comment: "Policy for Elemental MediaPackage Origin"
+        MinTTL: 0
+        MaxTTL: 3.1536E7
+        ParametersInCacheKeyAndForwardedToOrigin:
+          QueryStringsConfig:
+            QueryStrings:
+            - "aws.manifestfilter"
+            - "start"
+            - "end"
+            - "m"
+            QueryStringBehavior: "whitelist"
+          EnableAcceptEncodingBrotli: false
+          HeadersConfig:
+            HeaderBehavior: "whitelist"
+            Headers:
+            - "origin"
+          CookiesConfig:
+            CookieBehavior: "none"
+          EnableAcceptEncodingGzip: true
+        DefaultTTL: 86400
+        Name: "Managed-Elemental-MediaPackage"
+  CloudFrontOriginRequestPolicy00216adef65c7f47e4b9895492eafa07d300b5h6z:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::CloudFront::OriginRequestPolicy"
+    DeletionPolicy: "Retain"
+    Properties:
+      OriginRequestPolicyConfig:
+        QueryStringsConfig:
+          QueryStringBehavior: "all"
+        Comment: "Policy to forward all parameters in viewer requests"
+        HeadersConfig:
+          HeaderBehavior: "allViewer"
+        CookiesConfig:
+          CookieBehavior: "all"
+        Name: "Managed-AllViewer"
+  CloudFrontCachePolicy00b2884449e4de46a7ac3670bc7f1ddd6d00EUyng:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::CloudFront::CachePolicy"
+    DeletionPolicy: "Retain"
+    Properties:
+      CachePolicyConfig:
+        Comment: "Default policy when compression is disabled"
+        MinTTL: 1
+        MaxTTL: 3.1536E7
+        ParametersInCacheKeyAndForwardedToOrigin:
+          QueryStringsConfig:
+            QueryStringBehavior: "none"
+          EnableAcceptEncodingBrotli: false
+          HeadersConfig:
+            HeaderBehavior: "none"
+          CookiesConfig:
+            CookieBehavior: "none"
+          EnableAcceptEncodingGzip: false
+        DefaultTTL: 86400
+        Name: "Managed-CachingOptimizedForUncompressedObjects"
+  EC2VPCDHCPOptionsAssociation00vpc0296cb219173385f100Axx7i:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::EC2::VPCDHCPOptionsAssociation"
+    DeletionPolicy: "Retain"
+    Properties:
+      VpcId:
+        Ref: "EC2VPC00vpc0296cb219173385f100PCVPY"
+      DhcpOptionsId:
+        Ref: "EC2DHCPOptions00dopt0d14ead4cc769c686004UIb2"
+  CloudFrontOriginRequestPolicy00b689b0a853d040abbaf268738e2966ac00w26U9:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::CloudFront::OriginRequestPolicy"
+    DeletionPolicy: "Retain"
+    Properties:
+      OriginRequestPolicyConfig:
+        QueryStringsConfig:
+          QueryStringBehavior: "all"
+        Comment: "Policy to forward all parameters in viewer requests except for the\
+          \ Host header"
+        HeadersConfig:
+          HeaderBehavior: "allExcept"
+          Headers:
+          - "host"
+        CookiesConfig:
+          CookieBehavior: "all"
+        Name: "Managed-AllViewerExceptHostHeader"
+  AutoScalingScalingPolicy00scalingPolicy89610f977843497a80bd525d0470c24aautoScalingGroupNameSpotHopasgpolicyNameSpotHopscaleindsp00HlZtr:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::AutoScaling::ScalingPolicy"
+    DeletionPolicy: "Retain"
+    Properties:
+      PolicyType: "SimpleScaling"
+      ScalingAdjustment: -1
+      Cooldown: "210"
+      AutoScalingGroupName: "SpotHop-asg"
+      AdjustmentType: "ChangeInCapacity"
+  EC2VPC00vpc0296cb219173385f100PCVPY:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::EC2::VPC"
+    DeletionPolicy: "Retain"
+    Properties:
+      CidrBlock: "10.0.0.0/22"
+      EnableDnsSupport: true
+      InstanceTenancy: "default"
+      EnableDnsHostnames: true
+      Tags:
+      - Value: ""
+        Key: "SpotHopVPC"
+      - Value: "SpotHop-vpc"
+        Key: "Name"
+  CloudFrontOriginRequestPolicy0033f36d7ef39646d990e052428a34d9dc00Fm1wz:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::CloudFront::OriginRequestPolicy"
+    DeletionPolicy: "Retain"
+    Properties:
+      OriginRequestPolicyConfig:
+        QueryStringsConfig:
+          QueryStringBehavior: "all"
+        Comment: "Policy to forward all parameters in viewer requests and all CloudFront\
+          \ headers as of June 2022"
+        HeadersConfig:
+          HeaderBehavior: "allViewerAndWhitelistCloudFront"
+          Headers:
+          - "CloudFront-Viewer-Time-Zone"
+          - "CloudFront-Viewer-Address"
+          - "CloudFront-Viewer-Country"
+          - "CloudFront-Is-IOS-Viewer"
+          - "CloudFront-Is-Tablet-Viewer"
+          - "CloudFront-Forwarded-Proto"
+          - "CloudFront-Viewer-Country-Name"
+          - "CloudFront-Is-Mobile-Viewer"
+          - "CloudFront-Is-SmartTV-Viewer"
+          - "CloudFront-Viewer-Country-Region"
+          - "CloudFront-Is-Android-Viewer"
+          - "CloudFront-Viewer-Country-Region-Name"
+          - "CloudFront-Viewer-City"
+          - "CloudFront-Viewer-Latitude"
+          - "CloudFront-Viewer-Longitude"
+          - "CloudFront-Viewer-Http-Version"
+          - "CloudFront-Viewer-Postal-Code"
+          - "CloudFront-Viewer-ASN"
+          - "CloudFront-Is-Desktop-Viewer"
+          - "CloudFront-Viewer-Metro-Code"
+          - "CloudFront-Viewer-TLS"
+        CookiesConfig:
+          CookieBehavior: "all"
+        Name: "Managed-AllViewerAndCloudFrontHeaders-2022-06"
+  CloudWatchAlarm00CPU402mins00wouMB:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::CloudWatch::Alarm"
+    DeletionPolicy: "Retain"
+    Properties:
+      ComparisonOperator: "GreaterThanThreshold"
+      TreatMissingData: "missing"
+      Dimensions:
+      - Value: "SpotHop-asg"
+        Name: "AutoScalingGroupName"
+      Period: 60
+      EvaluationPeriods: 2
+      Namespace: "AWS/EC2"
+      OKActions: []
+      AlarmActions:
+      - Ref: "AutoScalingScalingPolicy00scalingPolicy12a2643577f548609ad1ccbaf409d0ecautoScalingGroupNameSpotHopasgpolicyNameSpotHopscalingpolicy00Z23cm"
+      MetricName: "CPUUtilization"
+      ActionsEnabled: true
+      AlarmName: "CPU-40-2mins"
+      Statistic: "Average"
+      InsufficientDataActions: []
+      DatapointsToAlarm: 2
+      Tags: []
+      Threshold: 40
+  SNSTopic00SpotHopsns00rJLXE:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::SNS::Topic"
+    DeletionPolicy: "Retain"
+    Properties:
+      TracingConfig: "PassThrough"
+      DisplayName: "SH-AWS"
+      FifoTopic: false
+      Subscription:
+      - Endpoint: "20104296@mail.wit.ie"
+        Protocol: "email"
+      Tags:
+      - Value: ""
+        Key: "SpotHop-SNS"
+      ArchivePolicy: {}
+      TopicName: "SpotHop-sns"
+  EC2Subnet00subnet05b7c7c4d1e5a3ff2006Vz3q:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::EC2::Subnet"
+    DeletionPolicy: "Retain"
+    Properties:
+      VpcId:
+        Ref: "EC2VPC00vpc0296cb219173385f100PCVPY"
+      MapPublicIpOnLaunch: true
+      EnableDns64: false
+      AvailabilityZoneId: "use1-az6"
+      PrivateDnsNameOptionsOnLaunch:
+        EnableResourceNameDnsARecord: false
+        HostnameType: "ip-name"
+        EnableResourceNameDnsAAAARecord: false
+      CidrBlock: "10.0.0.0/26"
+      Ipv6Native: false
+      Tags:
+      - Value: ""
+        Key: "SpotHopVPC"
+      - Value: "SpotHop-subnet-public1-us-east-1a"
+        Key: "Name"
+  EC2Subnet00subnet0b605c0444afd4901003vDpG:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::EC2::Subnet"
+    DeletionPolicy: "Retain"
+    Properties:
+      VpcId:
+        Ref: "EC2VPC00vpc0296cb219173385f100PCVPY"
+      MapPublicIpOnLaunch: true
+      EnableDns64: false
+      AvailabilityZoneId: "use1-az2"
+      PrivateDnsNameOptionsOnLaunch:
+        EnableResourceNameDnsARecord: false
+        HostnameType: "ip-name"
+        EnableResourceNameDnsAAAARecord: false
+      CidrBlock: "10.0.0.128/26"
+      Ipv6Native: false
+      Tags:
+      - Value: "SpotHop-subnet-public3-us-east-1c"
+        Key: "Name"
+      - Value: ""
+        Key: "SpotHopVPC"
+  CloudFrontOriginRequestPolicy00775133bc15f249f9abeaafb2e0bf67d200RWk7Q:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::CloudFront::OriginRequestPolicy"
+    DeletionPolicy: "Retain"
+    Properties:
+      OriginRequestPolicyConfig:
+        QueryStringsConfig:
+          QueryStringBehavior: "all"
+        Comment: "Policy for Elemental MediaTailor Origin"
+        HeadersConfig:
+          HeaderBehavior: "whitelist"
+          Headers:
+          - "origin"
+          - "access-control-request-headers"
+          - "x-forwarded-for"
+          - "access-control-request-method"
+          - "user-agent"
+        CookiesConfig:
+          CookieBehavior: "none"
+        Name: "Managed-Elemental-MediaTailor-PersonalizedManifests"
+  CloudFrontCachePolicy00658327eaf89d4faba63d7e88639e58f600Cqz5k:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::CloudFront::CachePolicy"
+    DeletionPolicy: "Retain"
+    Properties:
+      CachePolicyConfig:
+        Comment: "Policy with caching enabled. Supports Gzip and Brotli compression."
+        MinTTL: 1
+        MaxTTL: 3.1536E7
+        ParametersInCacheKeyAndForwardedToOrigin:
+          QueryStringsConfig:
+            QueryStringBehavior: "none"
+          EnableAcceptEncodingBrotli: true
+          HeadersConfig:
+            HeaderBehavior: "none"
+          CookiesConfig:
+            CookieBehavior: "none"
+          EnableAcceptEncodingGzip: true
+        DefaultTTL: 86400
+        Name: "Managed-CachingOptimized"
+  CloudFrontOriginRequestPolicy00acba4595bd2849b8b9fe13317c0390fa00TzFHj:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::CloudFront::OriginRequestPolicy"
+    DeletionPolicy: "Retain"
+    Properties:
+      OriginRequestPolicyConfig:
+        QueryStringsConfig:
+          QueryStringBehavior: "none"
+        Comment: "Policy to forward user-agent and referer headers to origin"
+        HeadersConfig:
+          HeaderBehavior: "whitelist"
+          Headers:
+          - "referer"
+          - "user-agent"
+        CookiesConfig:
+          CookieBehavior: "none"
+        Name: "Managed-UserAgentRefererHeaders"
+  CloudFrontCachePolicy004135ea2d6df844a39df34b5a84be39ad00ciLRu:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::CloudFront::CachePolicy"
+    DeletionPolicy: "Retain"
+    Properties:
+      CachePolicyConfig:
+        Comment: "Policy with caching disabled"
+        MinTTL: 0
+        MaxTTL: 0
+        ParametersInCacheKeyAndForwardedToOrigin:
+          QueryStringsConfig:
+            QueryStringBehavior: "none"
+          EnableAcceptEncodingBrotli: false
+          HeadersConfig:
+            HeaderBehavior: "none"
+          CookiesConfig:
+            CookieBehavior: "none"
+          EnableAcceptEncodingGzip: false
+        DefaultTTL: 0
+        Name: "Managed-CachingDisabled"
+  CloudFrontOriginRequestPolicy0059781a5b390341f3afcbaf62929ccde100Wf4Jk:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::CloudFront::OriginRequestPolicy"
+    DeletionPolicy: "Retain"
+    Properties:
+      OriginRequestPolicyConfig:
+        QueryStringsConfig:
+          QueryStringBehavior: "none"
+        Comment: "Policy for custom origin with CORS"
+        HeadersConfig:
+          HeaderBehavior: "whitelist"
+          Headers:
+          - "origin"
+        CookiesConfig:
+          CookieBehavior: "none"
+        Name: "Managed-CORS-CustomOrigin"
+  CloudWatchAlarm00CPUunder402mins006w8Ro:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::CloudWatch::Alarm"
+    DeletionPolicy: "Retain"
+    Properties:
+      ComparisonOperator: "LessThanOrEqualToThreshold"
+      TreatMissingData: "missing"
+      Dimensions:
+      - Value: "SpotHop-asg"
+        Name: "AutoScalingGroupName"
+      Period: 60
+      EvaluationPeriods: 2
+      Namespace: "AWS/EC2"
+      OKActions: []
+      AlarmActions:
+      - Ref: "AutoScalingScalingPolicy00scalingPolicy89610f977843497a80bd525d0470c24aautoScalingGroupNameSpotHopasgpolicyNameSpotHopscaleindsp00HlZtr"
+      MetricName: "CPUUtilization"
+      ActionsEnabled: true
+      AlarmName: "CPU-under-40-2mins"
+      Statistic: "Average"
+      InsufficientDataActions: []
+      DatapointsToAlarm: 2
+      Tags: []
+      Threshold: 40
+  EC2Subnet00subnet04565121b44a8a7fd00lTjKf:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::EC2::Subnet"
+    DeletionPolicy: "Retain"
+    Properties:
+      VpcId:
+        Ref: "EC2VPC00vpc0296cb219173385f100PCVPY"
+      MapPublicIpOnLaunch: true
+      EnableDns64: false
+      AvailabilityZoneId: "use1-az1"
+      PrivateDnsNameOptionsOnLaunch:
+        EnableResourceNameDnsARecord: false
+        HostnameType: "ip-name"
+        EnableResourceNameDnsAAAARecord: false
+      CidrBlock: "10.0.0.64/26"
+      Ipv6Native: false
+      Tags:
+      - Value: ""
+        Key: "SpotHopVPC"
+      - Value: "SpotHop-subnet-public2-us-east-1b"
+        Key: "Name"
+  ElasticLoadBalancingV2TargetGroup00targetgroupSpotHoptg161da0597cce791800ygZcd:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::ElasticLoadBalancingV2::TargetGroup"
+    DeletionPolicy: "Retain"
+    Properties:
+      IpAddressType: "ipv4"
+      HealthCheckIntervalSeconds: 30
+      Matcher:
+        HttpCode: "200"
+      HealthCheckPath: "/"
+      Port: 3000
+      Targets: []
+      HealthCheckEnabled: true
+      ProtocolVersion: "HTTP1"
+      UnhealthyThresholdCount: 2
+      HealthCheckTimeoutSeconds: 5
+      Name: "SpotHop-tg"
+      VpcId:
+        Ref: "EC2VPC00vpc0296cb219173385f100PCVPY"
+      HealthyThresholdCount: 5
+      HealthCheckProtocol: "HTTP"
+      TargetGroupAttributes:
+      - Value: "lb_cookie"
+        Key: "stickiness.type"
+      - Value: "86400"
+        Key: "stickiness.app_cookie.duration_seconds"
+      - Value: "1"
+        Key: "target_group_health.dns_failover.minimum_healthy_targets.count"
+      - Value: "use_load_balancer_configuration"
+        Key: "load_balancing.cross_zone.enabled"
+      - Value: "86400"
+        Key: "stickiness.lb_cookie.duration_seconds"
+      - Value: "off"
+        Key: "target_group_health.dns_failover.minimum_healthy_targets.percentage"
+      - Value: "false"
+        Key: "stickiness.enabled"
+      - Value: "off"
+        Key: "target_group_health.unhealthy_state_routing.minimum_healthy_targets.percentage"
+      - Value: "0"
+        Key: "slow_start.duration_seconds"
+      - Value: "300"
+        Key: "deregistration_delay.timeout_seconds"
+      - Value: "1"
+        Key: "target_group_health.unhealthy_state_routing.minimum_healthy_targets.count"
+      - Value: "off"
+        Key: "load_balancing.algorithm.anomaly_mitigation"
+      - Value: ""
+        Key: "stickiness.app_cookie.cookie_name"
+      - Value: "round_robin"
+        Key: "load_balancing.algorithm.type"
+      TargetType: "instance"
+      HealthCheckPort: "traffic-port"
+      Protocol: "HTTP"
+      Tags:
+      - Value: ""
+        Key: "SpotHop-tg"
+  CloudWatchAlarm00MongoDBHighLoadAlarm00TnBJl:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::CloudWatch::Alarm"
+    DeletionPolicy: "Retain"
+    Properties:
+      ComparisonOperator: "GreaterThanOrEqualToThreshold"
+      TreatMissingData: "missing"
+      Dimensions:
+      - Value: "i-0fc2d60c573338e37"
+        Name: "Instance"
+      Period: 60
+      EvaluationPeriods: 1
+      Namespace: "Custom"
+      OKActions: []
+      AlarmActions:
+      - Ref: "SNSTopic00SpotHopsns00rJLXE"
+      MetricName: "High_Load"
+      ActionsEnabled: true
+      AlarmDescription: "Alarm triggered when the MongoDB server instance is experiencing\
+        \ higher than usual load, which may be indicative of suspicious activity."
+      AlarmName: "MongoDB_High_Load_Alarm"
+      Statistic: "Average"
+      InsufficientDataActions: []
+      DatapointsToAlarm: 1
+      Tags: []
+      Threshold: 1
+  AutoScalingAutoScalingGroup00SpotHopasg00IbAY0:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::AutoScaling::AutoScalingGroup"
+    DeletionPolicy: "Retain"
+    Properties:
+      LoadBalancerNames: []
+      ServiceLinkedRoleARN: "arn:aws:iam::364566316223:role/aws-service-role/autoscaling.amazonaws.com/AWSServiceRoleForAutoScaling"
+      TargetGroupARNs:
+      - Ref: "ElasticLoadBalancingV2TargetGroup00targetgroupSpotHoptg161da0597cce791800ygZcd"
+      Cooldown: "90"
+      NotificationConfigurations:
+      - TopicARN:
+          Ref: "SNSTopic00SpotHopsns00rJLXE"
+        NotificationTypes:
+        - "autoscaling:EC2_INSTANCE_LAUNCH"
+        - "autoscaling:EC2_INSTANCE_LAUNCH_ERROR"
+        - "autoscaling:EC2_INSTANCE_TERMINATE"
+        - "autoscaling:EC2_INSTANCE_TERMINATE_ERROR"
+      AvailabilityZones:
+      - "us-east-1a"
+      - "us-east-1b"
+      - "us-east-1c"
+      DesiredCapacity: "0"
+      HealthCheckGracePeriod: 30
+      MetricsCollection:
+      - Granularity: "1Minute"
+        Metrics:
+        - "GroupTerminatingCapacity"
+        - "WarmPoolWarmedCapacity"
+        - "GroupMinSize"
+        - "GroupDesiredCapacity"
+        - "WarmPoolMinSize"
+        - "GroupStandbyCapacity"
+        - "GroupInServiceCapacity"
+        - "GroupInServiceInstances"
+        - "GroupMaxSize"
+        - "GroupPendingCapacity"
+        - "WarmPoolTotalCapacity"
+        - "GroupStandbyInstances"
+        - "GroupTotalCapacity"
+        - "GroupTotalInstances"
+        - "WarmPoolTerminatingCapacity"
+        - "GroupPendingInstances"
+        - "GroupAndWarmPoolTotalCapacity"
+        - "GroupTerminatingInstances"
+        - "GroupAndWarmPoolDesiredCapacity"
+        - "WarmPoolDesiredCapacity"
+        - "WarmPoolPendingCapacity"
+      DefaultInstanceWarmup: 30
+      MaxSize: "4"
+      NewInstancesProtectedFromScaleIn: false
+      MinSize: "0"
+      TerminationPolicies:
+      - "Default"
+      LaunchTemplate:
+        Version: "$Latest"
+        LaunchTemplateName: "SpotHop-lt"
+        LaunchTemplateId: "lt-0d284ea6e649398f9"
+      AutoScalingGroupName: "SpotHop-asg"
+      VPCZoneIdentifier:
+      - Ref: "EC2Subnet00subnet0b605c0444afd4901003vDpG"
+      - Ref: "EC2Subnet00subnet05b7c7c4d1e5a3ff2006Vz3q"
+      - Ref: "EC2Subnet00subnet04565121b44a8a7fd00lTjKf"
+      Tags:
+      - Value: ""
+        Key: "SpotHop-asg"
+        PropagateAtLaunch: true
+      HealthCheckType: "EC2"
+  EC2DHCPOptions00dopt0d14ead4cc769c686004UIb2:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::EC2::DHCPOptions"
+    DeletionPolicy: "Retain"
+    Properties:
+      DomainName: "ec2.internal"
+      DomainNameServers:
+      - "AmazonProvidedDNS"
+      Tags: []
+  AthenaWorkGroup00primary00pVXeK:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::Athena::WorkGroup"
+    DeletionPolicy: "Retain"
+    Properties:
+      WorkGroupConfiguration:
+        RequesterPaysEnabled: false
+        EnforceWorkGroupConfiguration: false
+        EngineVersion:
+          SelectedEngineVersion: "AUTO"
+        PublishCloudWatchMetricsEnabled: false
+        ResultConfiguration: {}
+      State: "ENABLED"
+      Tags: []
+      Name: "primary"
